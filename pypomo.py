@@ -9,8 +9,8 @@ import time
 root = tk.Tk()
 root.title("Pomodoro timer")
 
-# Set the dimentsions of the window
-root.geometry("300x150")
+# Set the dimensions of the window
+root.geometry("300x165")
 
 # Create a label to display the countdown
 label = tk.Label(root, text="", font=("Helvetica", 48))
