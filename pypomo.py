@@ -3,7 +3,7 @@
 # Simple Pomodoro Timer in Python3
 
 import tkinter as tk
-import timer
+import time
 
 # Set up the main application window
 root = tk.Tk()
@@ -26,14 +26,14 @@ def countdown(time_in_seconds, session_type):
         time.sleep(1)
         time_in_seconds -= 1
 
-  # Change the background color when the session ends
-  if session_type == "study":
-      root.config(bg="green") # indicates break time
-  else:
-      root.config(bg="red")  # indicates study time
+    # Change the background color when the session ends
+    if session_type == "study":
+        root.config(bg="green") # indicates break time
+    else:
+        root.config(bg="red")  # indicates study time
 
-  root.update()
-  time.sleep(2)  # Pause for 2 seconds to show background color change
+    root.update()
+    time.sleep(2)  # Pause for 2 seconds to show background color change
 
 # Function to start Pomodoro Timer
 def start_pomodoro():
