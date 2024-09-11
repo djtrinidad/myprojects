@@ -3,11 +3,12 @@
 # Simple Pomodoro Timer in Python3
 
 import tkinter as tk
+from tkinter import ttk
 import time
 
 # Set up the main application window
 root = tk.Tk()
-root.title("Pomodoro timer")
+root.title("Pomodoro Timer")
 
 # Set the dimensions of the window
 root.geometry("300x165")
@@ -15,6 +16,13 @@ root.geometry("300x165")
 # Create a label to display the countdown
 label = tk.Label(root, text="", font=("Helvetica", 48))
 label.pack(pady=20)
+
+# Add a combobox to select between 25/5 or 50/10
+session_options = [("25/5", 25, 5), ("50/10", 50, 10)]
+session_var = tk.StringVar()
+session_dropdown = ttk.Combobox(root, textvariable=session_var, values=[opt[0] for opt in session_options], state="readonly")
+session_dropdown.set("25/5") # Default selection
+session_dropdown.pack(pady=5)
 
 # Function to start the countdown
 def countdown(time_in_seconds, session_type):
@@ -37,11 +45,16 @@ def countdown(time_in_seconds, session_type):
 
 # Function to start Pomodoro Timer
 def start_pomodoro():
+    # Get the selected session type
+    selected_option = session_dropdown.get()
+    study_time = next(opt[1] for opt in session_options if opt[0] == selected_option)
+    break_time = next(opt[2] for opt in session_options if opt[0] == selected_option)
+    
     for _ in range(2):  # Run two sessions
         root.config(bg="white")
-        countdown(25 * 60,  "study")  # 25 min study sessions
+        countdown(study_time * 60,  "study")  # 25 min study sessions
         root.config(bg="green")
-        countdown(5 * 60, "break")  # 5 min break session
+        countdown(break_time * 60, "break")  # 5 min break session
     label.config(text="Done!", font=("Helvetica", 32))
     root.config(bg="blue")
 
