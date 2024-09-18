@@ -95,8 +95,9 @@ Trying to fix grub
 # cd /cdrom
 # cp -R EFI /boot/efi/
 
-Create user
+** Create user
 # adduser <username>
+# usermod -aG sudo <username>
 # systemctl set-default graphical.target
 
 trying grub once more, else boot manually again
